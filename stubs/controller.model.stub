@@ -1,0 +1,47 @@
+<?php
+
+namespace {{ namespace }};
+
+use LaravelApiFactory\Helpers\PaginationHelper;
+use App\Http\Requests\{{ model }}StoreRequest;
+use App\Http\Requests\{{ model }}UpdateRequest;
+use App\Http\Resources\{{ model }}Collection;
+use App\Http\Resources\{{ model }}Resource;
+use App\Models\{{ model }};
+
+
+class {{ class }} extends Controller
+{
+    public function show($id) {
+        $model = {{ model }}::findOrFail($id);
+        $resource = new {{ model }}Resource($model);
+        return response()->json($resource);
+    }
+    public function index() {
+        PaginationHelper::addTotalElements({{ model }}::class);
+        $models = {{ model }}::get();
+        $resource = new {{ model }}Collection($models);
+        return response()->json($resource);
+    }
+    public function store({{ model }}StoreRequest $request) {
+        $model = new {{ model }}();
+        $model->fill($request->all());
+        $model->save();
+        $resource = new {{ model }}Resource($model);
+        return response()->json($resource);
+    }
+    public function update({{ model }}UpdateRequest $request, $id) {
+        $model = {{ model }}::findOrFail($id);
+        $model->fill($request->all());
+        $model->save();
+        $resource = new {{ model }}Resource($model);
+        return response()->json($resource);
+    }
+    public function delete($id) {
+        $model = {{ model }}::findOrFail($id);
+        $model->delete();
+        $resource = new {{ model }}Resource($model);
+        return response()->json($resource);
+    }
+
+}

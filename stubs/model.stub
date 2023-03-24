@@ -1,0 +1,12 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Model;
+use LaravelApiFactory\Traits\ModelTrait;
+
+class {{ class }} extends Model
+{
+    use ModelTrait;
+
+}

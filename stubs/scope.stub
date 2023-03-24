@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use Illuminate\Database\Eloquent\Scope;
+use LaravelApiFactory\Traits\QueryScopeTrait;
+use LaravelApiFactory\Traits\ScopeTrait;
+
+class {{ class }} implements Scope
+{
+    use ScopeTrait, QueryScopeTrait;
+
+}
